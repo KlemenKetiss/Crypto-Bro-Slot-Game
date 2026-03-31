@@ -6,6 +6,8 @@
 - **Free spins:** Landing enough `BONUS` symbols triggers free spins. Spins during free-spin mode do not deduct balance.
 - **Forced outcomes:** Dev buttons can force specific stop sets for testing and demos.
 
+<img width="1256" height="714" alt="image" src="https://github.com/user-attachments/assets/b3d8d6e6-fd67-4df6-a9fd-f08fde235547" />
+
 ---
 
 ## How To Run Locally
