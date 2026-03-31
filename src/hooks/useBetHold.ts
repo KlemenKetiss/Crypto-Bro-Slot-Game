@@ -13,12 +13,14 @@ export function useBetHold(
 ): {
   startBetHold: (direction: 'up' | 'down') => void;
   stopBetHold: () => void;
+  stepBet: (direction: 'up' | 'down') => void;
 } {
   const onStepRef = useRef(onStep);
   onStepRef.current = onStep;
 
   const timeoutRef = useRef<number | null>(null);
   const intervalRef = useRef<number | null>(null);
+  const didAutoRepeatRef = useRef(false);
 
   const stopBetHold = useCallback(() => {
     if (timeoutRef.current !== null) {
@@ -33,9 +35,11 @@ export function useBetHold(
 
   const startBetHold = useCallback(
     (direction: 'up' | 'down') => {
-      onStepRef.current(direction);
       stopBetHold();
+      didAutoRepeatRef.current = false;
       timeoutRef.current = window.setTimeout(() => {
+        didAutoRepeatRef.current = true;
+        onStepRef.current(direction);
         intervalRef.current = window.setInterval(() => {
           onStepRef.current(direction);
         }, BET_HOLD_REPEAT_INTERVAL_MS);
@@ -44,7 +48,16 @@ export function useBetHold(
     [stopBetHold],
   );
 
+  const stepBet = useCallback((direction: 'up' | 'down') => {
+    // Ignore the synthetic click fired after a hold-triggered auto-repeat.
+    if (didAutoRepeatRef.current) {
+      didAutoRepeatRef.current = false;
+      return;
+    }
+    onStepRef.current(direction);
+  }, []);
+
   useEffect(() => () => stopBetHold(), [stopBetHold]);
 
-  return { startBetHold, stopBetHold };
+  return { startBetHold, stopBetHold, stepBet };
 }

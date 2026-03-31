@@ -38,7 +38,7 @@ export function GamePanel({ adapter, onAdapterConnected }: GamePanelProps) {
     [adapter],
   );
 
-  const { startBetHold, stopBetHold } = useBetHold(onBetStep);
+  const { startBetHold, stopBetHold, stepBet } = useBetHold(onBetStep);
 
   const balanceText = `Credits: ${formatPanelAmount(display.balance)} €`;
   const betText = `Bet: ${display.bet} €`;
@@ -67,6 +67,7 @@ export function GamePanel({ adapter, onAdapterConnected }: GamePanelProps) {
               onMouseLeave={stopBetHold}
               onTouchEnd={stopBetHold}
               onTouchCancel={stopBetHold}
+              onClick={() => stepBet('down')}
             >
               −
             </button>
@@ -85,6 +86,7 @@ export function GamePanel({ adapter, onAdapterConnected }: GamePanelProps) {
               onMouseLeave={stopBetHold}
               onTouchEnd={stopBetHold}
               onTouchCancel={stopBetHold}
+              onClick={() => stepBet('up')}
             >
               +
             </button>
