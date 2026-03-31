@@ -72,7 +72,7 @@ export const SYMBOL_WIN_DIMMED_ALPHA = 0.5;
 export const INITIAL_WIN = 0;
 
 // Win field (Pixi overlay) layout and typography
-export const WIN_FIELD_FONT_SIZE = 100;
+export const WIN_FIELD_FONT_SIZE = 80;
 export const WIN_FIELD_INITIAL_TEXT = '0';
 export const WIN_FIELD_TEXT_Y_OFFSET = 15;
 export const WIN_FIELD_BOTTOM_OFFSET = 300;
