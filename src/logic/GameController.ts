@@ -198,7 +198,7 @@ export class GameController {
     this.checkIfFreeSpinsEnded();
     this.updatePanelState(totalWin);
     this.updateFeatureView();
-    this.clearForceStops();
+    this.clearForceStopsIfUnselected();
     this.animateWins(wins);
     this.onSpinResolved?.({ totalWin, hasWin: totalWin > 0 });
   }
@@ -286,11 +286,13 @@ export class GameController {
   }
 
   /**
-   * After a spin concludes, forcibly clear any forced stops, so next spin is random 
-   * (unless user selects a new force outcome again).
+   * After a spin concludes, clear forced stops only when no force outcome is selected.
+   * This keeps selected forced outcomes sticky across consecutive spins.
    */
-  private clearForceStops(): void {
-    this.reels.forceStops = [];
+  private clearForceStopsIfUnselected(): void {
+    if (this.state.selectedForceIndex === null) {
+      this.reels.forceStops = [];
+    }
   }
 
   /**

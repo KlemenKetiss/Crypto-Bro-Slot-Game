@@ -51,7 +51,6 @@ export function handleGameState(
         ...state,
         spinActive: false,
         balance: state.balance + event.totalWin,
-        selectedForceIndex: null,
       };
     }
     case 'FORCE_SELECTED': {
