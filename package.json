@@ -5,7 +5,7 @@
   "description": "Crypto Bro Slot Game - 5-reel ways slot built with PixiJS and React",
   "scripts": {
     "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html --dist-dir dist",
+    "build": "parcel build src/index.html --dist-dir dist --no-cache",
     "start": "parcel src/index.html",
     "test": "vitest run",
     "test:watch": "vitest"
