@@ -8,12 +8,22 @@
     "build": "parcel build src/index.html --dist-dir dist",
     "start": "parcel src/index.html"
   },
+  "staticFiles": {
+    "staticPath": "assets",
+    "staticOutPath": "assets"
+  },
   "dependencies": {
+    "@pixi/spine-pixi": "^2.1.1",
+    "gsap": "^3.13.0",
+    "pixi.js": "^8.14.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "parcel": "^2.13.3",
+    "parcel-reporter-static-files-copy": "^1.5.3",
     "typescript": "^5.9.2"
   }
 }
