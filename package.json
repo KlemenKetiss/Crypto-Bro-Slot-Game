@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "parcel src/index.html",
     "build": "parcel build src/index.html --dist-dir dist --no-cache",
+    "deploy": "gh-pages -d dist",
     "start": "parcel src/index.html",
     "test": "vitest run",
     "test:watch": "vitest"
@@ -24,9 +25,15 @@
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "gh-pages": "^6.3.0",
     "parcel": "^2.13.3",
     "parcel-reporter-static-files-copy": "^1.5.3",
     "typescript": "^5.9.2",
     "vitest": "^4.1.2"
+  },
+  "targets": {
+    "default": {
+      "publicUrl": "./"
+    }
   }
 }

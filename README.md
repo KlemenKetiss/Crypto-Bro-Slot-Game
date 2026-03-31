@@ -4,7 +4,7 @@
 - **Ways wins:** A symbol pays when it appears on at least 3 consecutive reels (left to right). Multiple matches on the same reel multiply the number of ways.
 - **Symbols and payouts:** Defined in `src/utils/config.ts` (`SYMBOLS`, `SYMBOL_PAYOUTS`).
 - **Free spins:** Landing enough `BONUS` symbols triggers free spins. Spins during free-spin mode do not deduct balance.
-- **Bro calls (forced outcomes):** Dev buttons can force specific stop sets for testing and demos.
+- **Forced outcomes:** Dev buttons can force specific stop sets for testing and demos.
 
 ---
 
