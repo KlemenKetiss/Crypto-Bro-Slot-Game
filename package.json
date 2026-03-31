@@ -15,7 +15,7 @@
   "dependencies": {
     "@pixi/spine-pixi": "^2.1.1",
     "gsap": "^3.13.0",
-    "pixi.js": "^8.14.0",
+    "pixi.js": "8.4.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
