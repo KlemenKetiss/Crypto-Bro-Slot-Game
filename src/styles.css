@@ -364,7 +364,7 @@ canvas {
     }
 
     .btn-spin {
-        left: 40%;
+        left: 39%;
         bottom: calc(20%);
         width: clamp(5.8rem, 10.2vmin, 7.4rem);
         height: clamp(3.8rem, 6.6vmin, 4.9rem);

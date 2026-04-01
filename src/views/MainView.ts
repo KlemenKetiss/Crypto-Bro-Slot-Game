@@ -72,6 +72,7 @@ export class MainView extends Container {
     this.reelsViewBackground.resize(orientation, gameWidth, gameHeight);
     this.winFieldView.resize(orientation, gameWidth, gameHeight);
     this.reelsView.resize(orientation, gameWidth, gameHeight);
+    this.featureView.resize(orientation, gameWidth, gameHeight);
   }
 }
 
