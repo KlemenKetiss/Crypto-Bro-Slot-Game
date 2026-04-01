@@ -21,6 +21,7 @@ export function GamePanel({ adapter, onAdapterConnected }: GamePanelProps) {
   const [display, setDisplay] = useState<PanelDisplayState>(
     createDefaultPanelDisplayState,
   );
+  const [isForceOutcomesOpen, setIsForceOutcomesOpen] = useState(false);
 
   const onConnectedRef = useRef(onAdapterConnected);
   onConnectedRef.current = onAdapterConnected;
@@ -106,8 +107,16 @@ export function GamePanel({ adapter, onAdapterConnected }: GamePanelProps) {
       >
         SPIN
       </button>
-      <details className="force-outcomes">
-        <summary className="force-outcomes-label">Force outcomes</summary>
+      <details className="force-outcomes" open={isForceOutcomesOpen}>
+        <summary
+          className="force-outcomes-label"
+          onClick={(event) => {
+            event.preventDefault();
+            setIsForceOutcomesOpen((isOpen) => !isOpen);
+          }}
+        >
+          Force outcomes
+        </summary>
         <div className="force-buttons">
           {FORCE_OUTCOME_LABELS.map((label, index) => (
             <button
