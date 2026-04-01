@@ -52,5 +52,7 @@ export const TestConstants = {
     matchesNoPayout: 2,
     matchesThree: 3,
     waysMultiplierThreeReelsTwoPerReel: 2 * 2 * 2,
+    waysMultiplierFourReelsTwoPerReel: 2 ** 4,
+    waysMultiplierFiveReelsTwoPerReel: 2 ** 5,
   },
 } as const;

@@ -6,6 +6,7 @@ import { SYMBOL_PAYOUTS } from '../utils/config';
 const { winWays } = TestConstants;
 const minReelsForWin = testConfig.winningWays.minReelsForWin;
 const fiveReels = 5;
+const fourReels = 4;
 
 describe('WinLogic', () => {
   describe('getSymbolPayout', () => {
@@ -73,6 +74,30 @@ describe('WinLogic', () => {
       expect(wayHigh).toBeDefined();
       expect(wayHigh!.count).toBe(fiveReels);
       expect(result.totalWin).toBe(SYMBOL_PAYOUTS.H6[fiveReels]);
+    });
+
+    it('applies ways multiplier across four reels', () => {
+      const two = ['H6', 'H6'] as const;
+      const stops = [two, two, two, two].map((r) => [...r]);
+      const result = checkForWinningWays(stops, testConfig);
+      const wayHigh = result.wins.find((w) => w.symbol === 'H6');
+      expect(wayHigh).toBeDefined();
+      expect(wayHigh!.count).toBe(fourReels);
+      expect(result.totalWin).toBe(
+        SYMBOL_PAYOUTS.H6[fourReels] * winWays.waysMultiplierFourReelsTwoPerReel,
+      );
+    });
+
+    it('applies ways multiplier across five reels', () => {
+      const two = ['H6', 'H6'] as const;
+      const stops = [two, two, two, two, two].map((r) => [...r]);
+      const result = checkForWinningWays(stops, testConfig);
+      const wayHigh = result.wins.find((w) => w.symbol === 'H6');
+      expect(wayHigh).toBeDefined();
+      expect(wayHigh!.count).toBe(fiveReels);
+      expect(result.totalWin).toBe(
+        SYMBOL_PAYOUTS.H6[fiveReels] * winWays.waysMultiplierFiveReelsTwoPerReel,
+      );
     });
   });
 });
