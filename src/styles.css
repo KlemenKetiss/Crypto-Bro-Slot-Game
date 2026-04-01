@@ -144,10 +144,10 @@ canvas {
 }
 
 .btn-spin {
+    --spin-active-transform: none;
     position: absolute;
-    left: 87%;
+    left: 84%;
     bottom: calc(20%);
-    transform: translateX(-50%);
     z-index: 20;
     width: clamp(6rem, 10.5vmin, 8.4rem);
     height: clamp(3.7rem, 6.6vmin, 5.2rem);
@@ -171,6 +171,7 @@ canvas {
 }
 
 .btn-spin:active:not(:disabled) {
+    transform: var(--spin-active-transform);
     background: #2a6144;
     box-shadow: 0 0 10px rgba(56, 219, 131, 0.22);
     filter: brightness(0.96);
@@ -259,7 +260,7 @@ canvas {
     flex-wrap: wrap;
     position: absolute;
     right: 0;
-    bottom: calc(100% + 0.35rem);
+    top: calc(100% + 0.35rem);
     min-width: max-content;
     padding: 0.4rem 0.5rem;
     background: rgba(26, 26, 32, 0.86);
@@ -314,7 +315,7 @@ canvas {
 
     body {
         align-items: center;
-        font-size: 14px;
+        font-size: 15px;
     }
 
     .ui-overlay {
@@ -335,7 +336,7 @@ canvas {
         flex-direction: column;
         align-items: stretch;
         gap: 0.45rem;
-        transform: translateY(3rem);
+        transform: translateY(-2.5rem);
     }
 
     .ui-stat-group {
@@ -359,15 +360,14 @@ canvas {
     }
 
     .ui-stat {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 
     .btn-spin {
-        left: 87%;
+        left: 40%;
         bottom: calc(20%);
-        transform: translateX(-50%);
-        width: clamp(5rem, 8.8vmin, 6.4rem);
-        height: clamp(3.2rem, 5.6vmin, 4.1rem);
+        width: clamp(5.8rem, 10.2vmin, 7.4rem);
+        height: clamp(3.8rem, 6.6vmin, 4.9rem);
     }
 
     .force-outcomes {
@@ -379,6 +379,7 @@ canvas {
 
     .force-outcomes-label {
         flex-basis: 100%;
+        font-size: 0.84rem;
     }
 
     .force-buttons {
@@ -387,12 +388,12 @@ canvas {
 
     .btn {
         min-height: 34px;
-        font-size: 0.85rem;
+        font-size: 0.92rem;
     }
 
     .btn-force {
         flex: 1 1 auto;
         text-align: center;
-        font-size: 0.72rem;
+        font-size: 0.8rem;
     }
 }
