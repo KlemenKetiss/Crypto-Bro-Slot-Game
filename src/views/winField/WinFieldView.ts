@@ -1,4 +1,4 @@
-import { Assets, Container, Sprite, Text } from 'pixi.js';
+import { Assets, Container, Graphics, Sprite, Text } from 'pixi.js';
 import {
   GAME_WIDTH,
   GAME_HEIGHT,
@@ -18,6 +18,11 @@ import {
   WIN_FIELD_DROP_SHADOW_DISTANCE,
   WIN_FIELD_DROP_SHADOW_BLUR,
   WIN_FIELD_LETTER_SPACING,
+  WIN_FIELD_TEXT_BG_WIDTH,
+  WIN_FIELD_TEXT_BG_HEIGHT,
+  WIN_FIELD_TEXT_BG_RADIUS,
+  WIN_FIELD_TEXT_BG_COLOR,
+  WIN_FIELD_TEXT_BG_ALPHA,
 } from '../../utils/config';
 
 /**
@@ -29,6 +34,7 @@ import {
 export class WinFieldView extends Container {
   private winFieldSprite: Sprite;
   private winText: Text;
+  private winTextBackground: Graphics;
 
   constructor() {
     super();
@@ -63,7 +69,11 @@ export class WinFieldView extends Container {
     });
     this.winText.anchor.set(0.5);
     this.winText.y = WIN_FIELD_TEXT_Y_OFFSET;
+    this.winTextBackground = new Graphics();
+    this.winTextBackground.y = WIN_FIELD_TEXT_Y_OFFSET;
+    this.addChild(this.winTextBackground);
     this.addChild(this.winText);
+    this.updateWinTextBackground();
 
     // Return to approximate position used before centering: bottom-right area.
     this.x = GAME_WIDTH / 2 - WIN_FIELD_HORIZONTAL_OFFSET;
@@ -72,6 +82,23 @@ export class WinFieldView extends Container {
 
   public setWinText(text: string): void {
     this.winText.text = text;
+    this.updateWinTextBackground();
+  }
+
+  private updateWinTextBackground(): void {
+    this.winTextBackground
+      .clear()
+      .roundRect(
+        -WIN_FIELD_TEXT_BG_WIDTH / 2,
+        -WIN_FIELD_TEXT_BG_HEIGHT / 2,
+        WIN_FIELD_TEXT_BG_WIDTH,
+        WIN_FIELD_TEXT_BG_HEIGHT,
+        WIN_FIELD_TEXT_BG_RADIUS,
+      )
+      .fill({
+        color: WIN_FIELD_TEXT_BG_COLOR,
+        alpha: WIN_FIELD_TEXT_BG_ALPHA,
+      });
   }
 
   public resize(

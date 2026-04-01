@@ -15,6 +15,8 @@ import {
   FEATURE_TITLE_COLOR,
   FEATURE_COUNTER_COLOR,
   FEATURE_VIEW_Y_OFFSET_FROM_CENTER,
+  FEATURE_VIEW_PORTRAIT_X,
+  FEATURE_VIEW_PORTRAIT_Y,
   GameOrientation,
 } from '../../utils/config';
 
@@ -129,8 +131,8 @@ export class FeatureView extends Container {
     _gameHeight: number,
   ): void {
     if (_orientation === 'portrait') {
-      this.x = 750;
-      this.y = 225;
+      this.x = FEATURE_VIEW_PORTRAIT_X;
+      this.y = FEATURE_VIEW_PORTRAIT_Y;
     }else{
       this.x = GAME_WIDTH / 2 - FEATURE_VIEW_X_OFFSET;
       this.y = GAME_HEIGHT / 2 - FEATURE_VIEW_Y_OFFSET_FROM_CENTER;

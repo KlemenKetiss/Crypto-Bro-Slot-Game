@@ -107,10 +107,17 @@ export const WIN_FIELD_DROP_SHADOW_ANGLE = Math.PI / 4;
 export const WIN_FIELD_DROP_SHADOW_DISTANCE = 4;
 export const WIN_FIELD_DROP_SHADOW_BLUR = 0;
 export const WIN_FIELD_LETTER_SPACING = 1.5;
+export const WIN_FIELD_TEXT_BG_WIDTH = 376;
+export const WIN_FIELD_TEXT_BG_HEIGHT = 102;
+export const WIN_FIELD_TEXT_BG_RADIUS = 8;
+export const WIN_FIELD_TEXT_BG_COLOR = 0x000000;
+export const WIN_FIELD_TEXT_BG_ALPHA = 0.45;
 
 // Feature view (free spins overlay) layout and styling
 export const FEATURE_VIEW_X_OFFSET = 740;
 export const FEATURE_VIEW_Y_OFFSET_FROM_CENTER = 60;
+export const FEATURE_VIEW_PORTRAIT_X = 750;
+export const FEATURE_VIEW_PORTRAIT_Y = 225;
 export const FEATURE_BG_WIDTH = 370;
 export const FEATURE_BG_HEIGHT = 150;
 export const FEATURE_BG_RADIUS = 12;
@@ -128,6 +135,15 @@ export const CHARACTER_TARGET_HEIGHT = 420;
 export const CHARACTER_FALLBACK_SKELETON_HEIGHT = 617;
 export const CHARACTER_X_RATIO = 0.12;
 export const CHARACTER_Y_RATIO = 0.70;
+export const CHARACTER_PORTRAIT_X = 207;
+export const CHARACTER_PORTRAIT_Y = 552;
+export const CHARACTER_REACTION_MIX_DURATION = 0.2;
+export const CHARACTER_IDLE_RETURN_MIX_DURATION = 0.25;
+
+// Number formatting for panel values (credits/win)
+export const PANEL_AMOUNT_ROUNDING_MULTIPLIER = 100;
+export const PANEL_AMOUNT_MIN_FRACTION_DIGITS = 0;
+export const PANEL_AMOUNT_MAX_FRACTION_DIGITS = 2;
 
 // Symbol view fallback + win animation tuning
 export const SYMBOL_FALLBACK_CORNER_RADIUS = 16;

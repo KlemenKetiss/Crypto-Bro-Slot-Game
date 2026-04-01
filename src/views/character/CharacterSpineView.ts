@@ -5,6 +5,10 @@ import {
   CHARACTER_TARGET_HEIGHT,
   CHARACTER_X_RATIO,
   CHARACTER_Y_RATIO,
+  CHARACTER_PORTRAIT_X,
+  CHARACTER_PORTRAIT_Y,
+  CHARACTER_REACTION_MIX_DURATION,
+  CHARACTER_IDLE_RETURN_MIX_DURATION,
   GAME_HEIGHT,
   GAME_WIDTH,
   type GameOrientation,
@@ -16,8 +20,6 @@ const SPINE_ALIASES = {
 const PREFERRED_IDLE_ANIMATION = 'character_idle';
 const CHARACTER_WIN_ANIMATION = 'character_small_win';
 const CHARACTER_BONUS_ENTER_ANIMATION = 'character_bonus_anticipation_win'; //Also used for retrigger
-const CHARACTER_REACTION_MIX_DURATION = 0.2;
-const CHARACTER_IDLE_RETURN_MIX_DURATION = 0.25;
 
 /**
  * Character-specific Spine view (layout only) on top of generic SpineView.
@@ -79,8 +81,8 @@ export class CharacterSpineView extends SpineView {
     _gameHeight: number,
   ): void {
     if (_orientation === 'portrait') {
-      this.x = 207;
-      this.y = 552;
+      this.x = CHARACTER_PORTRAIT_X;
+      this.y = CHARACTER_PORTRAIT_Y;
     } else {
       this.x = GAME_WIDTH * CHARACTER_X_RATIO;
       this.y = GAME_HEIGHT * CHARACTER_Y_RATIO;
