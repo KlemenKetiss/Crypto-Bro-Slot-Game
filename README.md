@@ -8,8 +8,8 @@
   
 # Gameplay Visuals
 <img width="1256" height="714" alt="image" src="https://github.com/user-attachments/assets/b3d8d6e6-fd67-4df6-a9fd-f08fde235547" />
-<img width="522" height="907" alt="image" src="https://github.com/user-attachments/assets/ceefd3b9-45d0-4368-bf6b-302810be8778" />
-<img width="518" height="910" alt="image" src="https://github.com/user-attachments/assets/f9a84c68-84b6-413e-a8d4-da8af09cbb07" />
+<img width="1189" height="666" alt="image" src="https://github.com/user-attachments/assets/db28421f-a7cc-494c-b53b-06e98c62b3f1" />
+
 ---
 
 ## How To Run Locally
