@@ -7,6 +7,7 @@ import {
   CHARACTER_Y_RATIO,
   GAME_HEIGHT,
   GAME_WIDTH,
+  type GameOrientation,
 } from '../../utils/config';
 const SPINE_ALIASES = {
   skeleton: 'CharacterSkeleton',
@@ -70,5 +71,19 @@ export class CharacterSpineView extends SpineView {
 
   private playIdle(): void {
     this.setAnimation(0, PREFERRED_IDLE_ANIMATION, true, CHARACTER_REACTION_MIX_DURATION);
+  }
+
+  public resize(
+    _orientation: GameOrientation,
+    _gameWidth: number,
+    _gameHeight: number,
+  ): void {
+    if (_orientation === 'portrait') {
+      this.x = 207;
+      this.y = 552;
+    } else {
+      this.x = GAME_WIDTH * CHARACTER_X_RATIO;
+      this.y = GAME_HEIGHT * CHARACTER_Y_RATIO;
+    }
   }
 }

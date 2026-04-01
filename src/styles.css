@@ -16,10 +16,15 @@
     --accent: #8b5cf6;
     --accent-hover: #7c3aed;
     --accent-active: #6d28d9;
+    --spin-gray: #8e97a3;
+    --spin-gray-hover: #a0a8b3;
+    --spin-gray-active: #7a848f;
     --spin-text: #f8fafc;
-    --spin-glow: rgba(139, 92, 246, 0.4);
+    --spin-glow: rgba(142, 151, 163, 0.35);
     --radius: 10px;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --game-aspect-width: 16;
+    --game-aspect-height: 9;
 }
 
 /*
@@ -50,7 +55,8 @@ body {
 canvas {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    max-height: 100%;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
@@ -61,10 +67,12 @@ canvas {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    width: 100%;
-    max-width: min(80vw, 80vh * (16 / 9));
+    width: min(100vw, calc(100vh * var(--game-aspect-width) / var(--game-aspect-height)));
+    height: min(100vh, calc(100vw * var(--game-aspect-height) / var(--game-aspect-width)));
+    aspect-ratio: var(--game-aspect-width) / var(--game-aspect-height);
     padding: 0rem;
     box-sizing: border-box;
+    position: relative;
 }
 
 #bet-display {
@@ -76,43 +84,53 @@ canvas {
 }
 
 .ui-overlay {
-    /* Make the UI panel wider than the game canvas container */
-    width: min(90vw, 900px);
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    padding: 0 0.4rem 0.35rem;
+    pointer-events: none;
+}
+
+.ui-overlay > * {
+    pointer-events: auto;
 }
 
 .ui-top-row {
+    width: min(86vw, 760px);
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.75rem;
+    gap: 0.5rem;
     width: 100%;
-    padding: 0.75rem 0.9rem;
-    background: var(--bg-secondary);
+    padding: 0.45rem 0.6rem;
+    background: rgba(26, 26, 32, 0.68);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
 }
 
 .ui-stat-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
+    width: 100%;
+    gap: 0.3rem;
 }
 
 .ui-stat {
-    font-size: 1.125rem;
+    font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-primary);
 }
 
 .btn {
     font-family: 'Orbitron', 'Inter', system-ui, sans-serif;
-    font-size: 1.25rem;
+    font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     border: none;
@@ -126,19 +144,36 @@ canvas {
 }
 
 .btn-spin {
+    position: absolute;
+    left: 87%;
+    bottom: calc(20%);
+    transform: translateX(-50%);
+    z-index: 20;
+    width: clamp(6rem, 10.5vmin, 8.4rem);
+    height: clamp(3.7rem, 6.6vmin, 5.2rem);
     flex-shrink: 0;
-    padding: 0.75rem 2.5rem;
-    background: var(--accent);
+    padding: 0;
+    border-radius: 0.75rem;
+    background: #2f6b4b;
+    border: 1px solid #4ea777;
     color: var(--spin-text);
-    box-shadow: 0 4px 14px var(--spin-glow);
+    box-shadow: 0 0 14px rgba(56, 219, 131, 0.28);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 .btn-spin:hover:not(:disabled) {
-    background: var(--accent-hover);
+    background: #357a56;
+    box-shadow: 0 0 16px rgba(56, 219, 131, 0.34);
+    filter: brightness(1.03);
 }
 
 .btn-spin:active:not(:disabled) {
-    background: var(--accent-active);
+    background: #2a6144;
+    box-shadow: 0 0 10px rgba(56, 219, 131, 0.22);
+    filter: brightness(0.96);
 }
 
 .btn-spin:disabled {
@@ -146,16 +181,28 @@ canvas {
     cursor: not-allowed;
 }
 
+.spin-icon {
+    display: block;
+    filter: none;
+}
+
 .bet-control {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.3rem;
+    justify-content: center;
+}
+
+#balance-display,
+#bet-display,
+#win-display {
+    text-align: center;
 }
 
 .btn-bet {
     min-width: 2rem;
-    padding: 0.35rem 0.5rem;
-    font-size: 1.25rem;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.95rem;
     line-height: 1;
     background: var(--bg-elevated);
     color: var(--text-primary);
@@ -172,32 +219,63 @@ canvas {
 }
 
 .force-outcomes {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.75rem 0.9rem;
-    background: var(--bg-secondary);
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    display: inline-block;
+    padding: 0.4rem 0.6rem;
+    background: rgba(26, 26, 32, 0.68);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    z-index: 25;
 }
 
 .force-outcomes-label {
-    font-size: 0.9375rem;
+    font-size: 0.78rem;
     font-weight: 500;
     color: var(--text-muted);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+}
+
+.force-outcomes-label::-webkit-details-marker {
+    display: none;
+}
+
+.force-outcomes-label::after {
+    content: ' ▼';
+    font-size: 0.65rem;
+}
+
+.force-outcomes[open] .force-outcomes-label::after {
+    content: ' ▲';
 }
 
 .force-buttons {
-    display: flex;
-    gap: 0.5rem;
+    display: none;
+    gap: 0.35rem;
     flex-wrap: wrap;
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 0.35rem);
+    min-width: max-content;
+    padding: 0.4rem 0.5rem;
+    background: rgba(26, 26, 32, 0.86);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    z-index: 26;
+}
+
+.force-outcomes[open] .force-buttons {
+    display: flex;
 }
 
 .btn-force {
-    padding: 0.5rem 1rem;
-    font-size: 0.9375rem;
+    padding: 0.25rem 0.55rem;
+    font-size: 0.72rem;
     font-weight: 600;
     background: var(--bg-elevated);
     color: var(--text-primary);
@@ -229,18 +307,23 @@ canvas {
 }
 
 @media (orientation: portrait), (max-width: 600px) {
+    :root {
+        --game-aspect-width: 9;
+        --game-aspect-height: 16;
+    }
+
     body {
         align-items: center;
         font-size: 14px;
     }
 
     .ui-overlay {
-        width: 100%;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+        padding-bottom: 0.25rem;
     }
 
     #game-container {
-        max-width: 100vw;
-        max-height: 70vh;
         padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
         padding-bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
         padding-left: max(0.5rem, env(safe-area-inset-left, 0px));
@@ -248,32 +331,49 @@ canvas {
     }
 
     .ui-top-row {
+        width: 100%;
         flex-direction: column;
         align-items: stretch;
-        gap: 0.75rem;
+        gap: 0.45rem;
+        transform: translateY(3rem);
     }
 
     .ui-stat-group {
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 0.75rem;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "win win"
+            "credits bet";
+        gap: 0.45rem;
     }
 
-    /* On portrait / small width, force Win: onto its own (second) row */
     #win-display {
-        flex-basis: 100%;
+        grid-area: win;
+    }
+
+    #balance-display {
+        grid-area: credits;
+    }
+
+    .bet-control {
+        grid-area: bet;
     }
 
     .ui-stat {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 
     .btn-spin {
-        width: 100%;
-        text-align: center;
+        left: 87%;
+        bottom: calc(20%);
+        transform: translateX(-50%);
+        width: clamp(5rem, 8.8vmin, 6.4rem);
+        height: clamp(3.2rem, 5.6vmin, 4.1rem);
     }
 
     .force-outcomes {
+        right: 0.35rem;
+        top: 0.35rem;
+        bottom: auto;
         align-items: flex-start;
     }
 
@@ -286,20 +386,13 @@ canvas {
     }
 
     .btn {
-        min-height: 44px;
-        font-size: 1.1rem;
+        min-height: 34px;
+        font-size: 0.85rem;
     }
 
     .btn-force {
         flex: 1 1 auto;
         text-align: center;
-        font-size: 0.95rem;
-    }
-}
-
-/* When layout gets narrow and SPIN wraps to a second row, let it span the row */
-@media (max-width: 900px) {
-    .ui-top-row .btn-spin {
-        width: 100%;
+        font-size: 0.72rem;
     }
 }

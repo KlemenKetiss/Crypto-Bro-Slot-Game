@@ -5,6 +5,8 @@ import { Application, Assets } from 'pixi.js';
 import {
   GAME_WIDTH,
   GAME_HEIGHT,
+  type GameOrientation,
+  getGameDimensionsByOrientation,
   SLOT_RENDER_CONFIG,
   BET_LEVELS,
   DEFAULT_BET_INDEX,
@@ -43,6 +45,7 @@ export class Slot {
   private gameController!: GameController;
   private characterController!: CharacterController;
   private gameControllerInitialized = false;
+  private currentOrientation: GameOrientation = 'landscape';
 
   constructor() {
     this.app = new Application();
@@ -152,7 +155,27 @@ export class Slot {
     const container = document.getElementById('game-container');
     if (!container) return;
 
+    const nextOrientation = this.syncRendererWithOrientation();
+    const { width, height } = getGameDimensionsByOrientation(nextOrientation);
+    this.mainView.resize(nextOrientation, width, height);
     this.updateGameContainerLayout(container as HTMLElement);
+  }
+
+  private syncRendererWithOrientation(): GameOrientation {
+    const nextOrientation: GameOrientation =
+      window.innerHeight > window.innerWidth ? 'portrait' : 'landscape';
+    const { width, height } = getGameDimensionsByOrientation(nextOrientation);
+
+    const rendererWidth = this.app.renderer.width;
+    const rendererHeight = this.app.renderer.height;
+    const orientationChanged = this.currentOrientation !== nextOrientation;
+    const sizeChanged = rendererWidth !== width || rendererHeight !== height;
+
+    if (!orientationChanged && !sizeChanged) return nextOrientation;
+
+    this.currentOrientation = nextOrientation;
+    this.app.renderer.resize(width, height);
+    return nextOrientation;
   }
 
   /**

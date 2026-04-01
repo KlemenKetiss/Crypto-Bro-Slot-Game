@@ -2,6 +2,7 @@ import { Assets, Container, Sprite, Text } from 'pixi.js';
 import {
   GAME_WIDTH,
   GAME_HEIGHT,
+  type GameOrientation,
   WIN_FIELD_FONT_SIZE,
   WIN_FIELD_INITIAL_TEXT,
   WIN_FIELD_TEXT_Y_OFFSET,
@@ -72,5 +73,11 @@ export class WinFieldView extends Container {
   public setWinText(text: string): void {
     this.winText.text = text;
   }
+
+  public resize(
+    _orientation: GameOrientation,
+    _gameWidth: number,
+    _gameHeight: number,
+  ): void {}
 }
 

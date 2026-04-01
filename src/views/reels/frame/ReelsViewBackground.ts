@@ -4,6 +4,7 @@ import {
   GAME_HEIGHT,
   REEL_FRAME_SCALE,
   REEL_FRAME_Y_OFFSET,
+  type GameOrientation,
 } from '../../../utils/config';
 
 export class ReelsViewBackground extends Container {
@@ -22,5 +23,19 @@ export class ReelsViewBackground extends Container {
     this.reelFrameBackgroundSprite.y = GAME_HEIGHT / 2 + REEL_FRAME_Y_OFFSET;
     this.reelFrameBackgroundSprite.scale.set(REEL_FRAME_SCALE);
     this.addChild(this.reelFrameBackgroundSprite);
+  }
+
+  public resize(
+    _orientation: GameOrientation,
+    _gameWidth: number,
+    _gameHeight: number,
+  ): void {
+    if (_orientation === 'portrait') {
+      this.reelFrameBackgroundSprite.x = _gameWidth / 2;
+      this.reelFrameBackgroundSprite.y = _gameHeight / 2 + REEL_FRAME_Y_OFFSET;
+    } else {
+      this.reelFrameBackgroundSprite.x = GAME_WIDTH / 2;
+      this.reelFrameBackgroundSprite.y = GAME_HEIGHT / 2 + REEL_FRAME_Y_OFFSET;
+    }
   }
 }

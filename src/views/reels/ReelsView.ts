@@ -4,6 +4,7 @@ import { DefaultSymbolGenerator } from '../../utils/SymbolGenerator';
 import {
   GAME_HEIGHT,
   GAME_WIDTH,
+  type GameOrientation,
   REELS_CONFIG,
   REEL_FRAME_INNER_PADDING_SCALE,
   REELS_MAX_FIT_SCALE,
@@ -255,6 +256,20 @@ export class ReelsView extends Container {
 
   public setGameMode(mode: GameMode): void {
     this.currentGameMode = mode;
+  }
+
+  public resize(
+    _orientation: GameOrientation,
+    _gameWidth: number,
+    _gameHeight: number,
+  ): void {
+    if (_orientation === 'portrait') {
+      this.x = _gameWidth / 2;
+      this.y = _gameHeight / 2;
+    } else {
+      this.x = GAME_WIDTH / 2;
+      this.y = GAME_HEIGHT / 2;
+    }
   }
 }
 

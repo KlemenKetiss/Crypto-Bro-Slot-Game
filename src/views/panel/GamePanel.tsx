@@ -95,18 +95,19 @@ export function GamePanel({ adapter, onAdapterConnected }: GamePanelProps) {
             {winText}
           </div>
         </div>
-        <button
-          type="button"
-          className="btn btn-spin"
-          id="spin-btn"
-          disabled={!display.spinEnabled}
-          onClick={() => adapter.invokeSpinRequested()}
-        >
-          SPIN
-        </button>
       </div>
-      <section className="force-outcomes">
-        <span className="force-outcomes-label">Force outcomes:</span>
+      <button
+        type="button"
+        className="btn btn-spin"
+        id="spin-btn"
+        aria-label="Spin"
+        disabled={!display.spinEnabled}
+        onClick={() => adapter.invokeSpinRequested()}
+      >
+        SPIN
+      </button>
+      <details className="force-outcomes">
+        <summary className="force-outcomes-label">Force outcomes</summary>
         <div className="force-buttons">
           {FORCE_OUTCOME_LABELS.map((label, index) => (
             <button
@@ -120,7 +121,7 @@ export function GamePanel({ adapter, onAdapterConnected }: GamePanelProps) {
             </button>
           ))}
         </div>
-      </section>
+      </details>
     </aside>
   );
 }

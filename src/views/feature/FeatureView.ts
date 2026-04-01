@@ -15,6 +15,7 @@ import {
   FEATURE_TITLE_COLOR,
   FEATURE_COUNTER_COLOR,
   FEATURE_VIEW_Y_OFFSET_FROM_CENTER,
+  GameOrientation,
 } from '../../utils/config';
 
 /** Mostly transparent dark fill for shadow background. */
@@ -121,6 +122,19 @@ export class FeatureView extends Container {
 
     this.visible = true;
     this.counterText.text = `${remaining}`;
+  }
+  public resize(
+    _orientation: GameOrientation,
+    _gameWidth: number,
+    _gameHeight: number,
+  ): void {
+    if (_orientation === 'portrait') {
+      this.x = 750;
+      this.y = 225;
+    }else{
+      this.x = GAME_WIDTH / 2 - FEATURE_VIEW_X_OFFSET;
+      this.y = GAME_HEIGHT / 2 - FEATURE_VIEW_Y_OFFSET_FROM_CENTER;
+    }
   }
 }
 

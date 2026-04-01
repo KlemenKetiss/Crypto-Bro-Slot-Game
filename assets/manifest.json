@@ -164,6 +164,10 @@
           "src": "./images/Background.png"
         },
         {
+          "alias": "BackgroundPortrait",
+          "src": "./images/BackgroundPortrait.png"
+        },
+        {
           "alias": "CharacterSkeleton",
           "src": "./characterSpine/character.json"
         },

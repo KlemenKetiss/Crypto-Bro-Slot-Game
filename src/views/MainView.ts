@@ -1,5 +1,5 @@
 import { Container } from 'pixi.js';
-import { GAME_HEIGHT, GAME_WIDTH, REELS_CONFIG } from '../utils/config';
+import { GAME_HEIGHT, GAME_WIDTH, type GameOrientation, REELS_CONFIG } from '../utils/config';
 import { ReelsView } from './reels/ReelsView';
 import { WinFieldView } from './winField/WinFieldView';
 import { FeatureView } from './feature/FeatureView';
@@ -29,14 +29,14 @@ export class MainView extends Container {
     this.reelsView = new ReelsView();
     this.characterSpineView = this.createCharacterSpineView();
     this.featureView = new FeatureView();
-    this.layoutReels();
-    this.addChild(this.backgroundView);
-    this.addChild(this.reelsViewBackground);
-    this.addChild(this.reelsView);
-    this.addChild(this.characterSpineLayer);
     if (this.characterSpineView) {
       this.characterSpineLayer.addChild(this.characterSpineView);
     }
+    this.layoutReels();
+    this.addChild(this.backgroundView);
+    this.addChild(this.characterSpineLayer);
+    this.addChild(this.reelsViewBackground);
+    this.addChild(this.reelsView);
     this.addChild(this.winFieldView);
     this.addChild(this.featureView);
 
@@ -61,6 +61,17 @@ export class MainView extends Container {
       console.error('Failed to create Spine character:', error);
       return null;
     }
+  }
+
+  public resize(
+    orientation: GameOrientation,
+    gameWidth: number,
+    gameHeight: number,
+  ): void {
+    this.characterSpineView?.resize(orientation, gameWidth, gameHeight);
+    this.reelsViewBackground.resize(orientation, gameWidth, gameHeight);
+    this.winFieldView.resize(orientation, gameWidth, gameHeight);
+    this.reelsView.resize(orientation, gameWidth, gameHeight);
   }
 }
 
