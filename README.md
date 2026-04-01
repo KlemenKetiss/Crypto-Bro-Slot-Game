@@ -5,8 +5,10 @@
 - **Symbols and payouts:** `SYMBOLS`, `SYMBOL_PAYOUTS`, weights, and force-stop sets live in `src/utils/configs/gameplay/symbols.ts` and are re-exported from `src/utils/config.ts` for imports.
 - **Free spins:** Landing enough `BONUS` symbols triggers free spins. Spins during free-spin mode do not deduct balance.
 - **Forced outcomes:** Dev buttons can force specific stop sets for testing and demos.
-
+  
+# Gameplay Visuals
 <img width="1256" height="714" alt="image" src="https://github.com/user-attachments/assets/b3d8d6e6-fd67-4df6-a9fd-f08fde235547" />
+<img width="1189" height="666" alt="image" src="https://github.com/user-attachments/assets/db28421f-a7cc-494c-b53b-06e98c62b3f1" />
 
 ---
 
