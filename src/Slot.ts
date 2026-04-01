@@ -23,7 +23,7 @@ import {
 } from './utils/ViewportLayout';
 import { MainView } from './views/MainView';
 import { GamePanel } from './views/panel/GamePanel';
-import { ReactPanelAdapter } from './views/panel/ReactPanelAdapter';
+import { ReactPanelAdapter } from './adapters/ReactPanelAdapter';
 import { GameController } from './logic/GameController';
 import { CharacterController } from './logic/CharacterController';
 import type { GameConfig } from './logic/GameTypes';

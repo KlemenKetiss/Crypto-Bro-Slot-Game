@@ -6,7 +6,7 @@ import {
   ReactPanelAdapter,
   createDefaultPanelDisplayState,
   type PanelDisplayState,
-} from './ReactPanelAdapter';
+} from '../../adapters/ReactPanelAdapter';
 
 export type GamePanelProps = {
   adapter: ReactPanelAdapter;
