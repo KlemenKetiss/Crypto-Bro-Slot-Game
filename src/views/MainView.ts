@@ -49,9 +49,6 @@ export class MainView extends Container {
       GAME_WIDTH / 2,
       GAME_HEIGHT / 2,
     );
-    //this.reelSeparators.x = this.reelsView.x;
-    //this.reelSeparators.y = this.reelsView.y;
-    //this.reelSeparators.height = this.reelsView.height;
   }
 
   private createCharacterSpineView(): CharacterSpineView | null {

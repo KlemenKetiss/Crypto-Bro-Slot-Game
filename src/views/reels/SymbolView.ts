@@ -11,6 +11,10 @@ import {
 } from '../../utils/config';
 import gsap from 'gsap';
 
+const BONUS_SYMBOL_NAME = 'BONUS';
+const CONNECT_TEXTURE_SUFFIX = '_connect';
+const FULL_ALPHA = 1;
+
 /**
  * Single symbol that uses base + optional "_connect" texture from the manifest.
  */
@@ -31,9 +35,9 @@ export class SymbolView extends Container {
     try {
       this._symbolName = symbolName;
       const baseTexture = Assets.get(symbolName);
-      const shouldUseConnectVariant = symbolName !== 'BONUS';
+      const shouldUseConnectVariant = symbolName !== BONUS_SYMBOL_NAME;
       const connectTexture = shouldUseConnectVariant
-        ? Assets.get(`${symbolName}_connect`)
+        ? Assets.get(`${symbolName}${CONNECT_TEXTURE_SUFFIX}`)
         : undefined;
       this.hasConnectTexture = Boolean(connectTexture);
       if (baseTexture) {
@@ -41,7 +45,7 @@ export class SymbolView extends Container {
         this.symbolTexture.anchor.set(0.5);
         this.symbolTexture.width = SYMBOL_WIDTH;
         this.symbolTexture.height = SYMBOL_HEIGHT;
-        this.symbolTexture.alpha = 1;
+        this.symbolTexture.alpha = FULL_ALPHA;
         this.addChild(this.symbolTexture);
         // Center sprite within its container
         this.symbolTexture.x = SYMBOL_WIDTH / 2;
@@ -107,7 +111,7 @@ export class SymbolView extends Container {
     if (this.symbolTexture) {
       this.resetWinAnimation();
       if (this.hasConnectTexture) {
-        const connectTexture = Assets.get(`${this._symbolName}_connect`);
+        const connectTexture = Assets.get(`${this._symbolName}${CONNECT_TEXTURE_SUFFIX}`);
         if (connectTexture) {
           this.symbolTexture.texture = connectTexture;
         }
@@ -118,7 +122,6 @@ export class SymbolView extends Container {
         yoyo: true,
         ease: 'sine.inOut',
         alpha: SYMBOL_WIN_DIMMED_ALPHA,
-        //x: this.symbolTexture.x + SYMBOL_WIN_ANIMATION_CONFIG.shakeOffsetX,
       });
     }
   }
@@ -136,7 +139,7 @@ export class SymbolView extends Container {
       if (baseTexture) {
         this.symbolTexture.texture = baseTexture;
       }
-      this.symbolTexture.alpha = 1;
+      this.symbolTexture.alpha = FULL_ALPHA;
       this.symbolTexture.scale.set(this.baseScaleX, this.baseScaleY);
       this.symbolTexture.x = SYMBOL_WIDTH / 2;
       this.symbolTexture.y = SYMBOL_HEIGHT / 2;

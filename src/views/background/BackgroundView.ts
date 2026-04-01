@@ -4,7 +4,6 @@ import { GAME_HEIGHT, GAME_WIDTH } from '../../utils/config';
 export class BackgroundView extends Container {
     private backgroundSprite!: Sprite;
     private backgroundPortraitSprite!: Sprite;
-    //private currentBackgroundAlias: 'Background' | 'BackgroundPortrait' = 'Background';
 
   constructor() {
     super();
@@ -49,6 +48,5 @@ export class BackgroundView extends Container {
     const isPortrait = window.innerHeight > window.innerWidth;
     this.backgroundSprite.visible = !isPortrait;
     this.backgroundPortraitSprite.visible = isPortrait;
-    //this.currentBackgroundAlias = isPortrait ? 'BackgroundPortrait' : 'Background';
   }
 }
