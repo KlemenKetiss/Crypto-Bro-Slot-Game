@@ -5,9 +5,11 @@
 - **Symbols and payouts:** Defined in `src/utils/config.ts` (`SYMBOLS`, `SYMBOL_PAYOUTS`).
 - **Free spins:** Landing enough `BONUS` symbols triggers free spins. Spins during free-spin mode do not deduct balance.
 - **Forced outcomes:** Dev buttons can force specific stop sets for testing and demos.
-
+  
+# Gameplay Visuals
 <img width="1256" height="714" alt="image" src="https://github.com/user-attachments/assets/b3d8d6e6-fd67-4df6-a9fd-f08fde235547" />
-
+<img width="522" height="907" alt="image" src="https://github.com/user-attachments/assets/ceefd3b9-45d0-4368-bf6b-302810be8778" />
+<img width="518" height="910" alt="image" src="https://github.com/user-attachments/assets/f9a84c68-84b6-413e-a8d4-da8af09cbb07" />
 ---
 
 ## How To Run Locally
