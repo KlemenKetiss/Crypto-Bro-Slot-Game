@@ -153,19 +153,19 @@
         },
         {
           "alias": "WinField",
-          "src": "./images/WinField.png"
+          "src": "./images/WinField.webp"
         },
         {
           "alias": "ReelFrameBackground",
-          "src": "./images/ReelFrameBackground.png"
+          "src": "./images/ReelFrameBackground.webp"
         },
         {
           "alias": "Background",
-          "src": "./images/Background.png"
+          "src": "./images/Background.webp"
         },
         {
           "alias": "BackgroundPortrait",
-          "src": "./images/BackgroundPortrait.png"
+          "src": "./images/BackgroundPortrait.webp"
         },
         {
           "alias": "CharacterSkeleton",
