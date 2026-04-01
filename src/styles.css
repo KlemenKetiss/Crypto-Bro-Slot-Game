@@ -233,16 +233,16 @@ canvas {
 }
 
 .force-outcomes-label {
+    appearance: none;
+    background: transparent;
+    border: none;
+    padding: 0;
     font-size: 0.78rem;
     font-weight: 500;
     color: var(--text-muted);
     cursor: pointer;
-    list-style: none;
+    text-align: left;
     user-select: none;
-}
-
-.force-outcomes-label::-webkit-details-marker {
-    display: none;
 }
 
 .force-outcomes-label::after {
@@ -250,7 +250,7 @@ canvas {
     font-size: 0.65rem;
 }
 
-.force-outcomes[open] .force-outcomes-label::after {
+.force-outcomes.open .force-outcomes-label::after {
     content: ' ▲';
 }
 
@@ -270,7 +270,7 @@ canvas {
     z-index: 26;
 }
 
-.force-outcomes[open] .force-buttons {
+.force-outcomes.open .force-buttons {
     display: flex;
 }
 

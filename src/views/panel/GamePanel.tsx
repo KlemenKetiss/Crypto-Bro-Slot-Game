@@ -107,16 +107,17 @@ export function GamePanel({ adapter, onAdapterConnected }: GamePanelProps) {
       >
         SPIN
       </button>
-      <details className="force-outcomes" open={isForceOutcomesOpen}>
-        <summary
+      <div
+        className={`force-outcomes${isForceOutcomesOpen ? ' open' : ''}`}
+      >
+        <button
+          type="button"
           className="force-outcomes-label"
-          onClick={(event) => {
-            event.preventDefault();
-            setIsForceOutcomesOpen((isOpen) => !isOpen);
-          }}
+          aria-expanded={isForceOutcomesOpen}
+          onClick={() => setIsForceOutcomesOpen((isOpen) => !isOpen)}
         >
           Force outcomes
-        </summary>
+        </button>
         <div className="force-buttons">
           {FORCE_OUTCOME_LABELS.map((label, index) => (
             <button
@@ -130,7 +131,7 @@ export function GamePanel({ adapter, onAdapterConnected }: GamePanelProps) {
             </button>
           ))}
         </div>
-      </details>
+      </div>
     </aside>
   );
 }
